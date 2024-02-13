@@ -79,13 +79,7 @@ This allows for a clear separation between UI structure and appearance.
 
 User Registration and Login: The UserPageController.java and LoginController.java class handles user registration and login functionalities. It connects to a MySQL database for user data storage which hosted online.
 
-Database Connection: we hosted the database online. For the feature to view the database changes, we have:
-
-- Host: carhubservice-carhub.a.aivencloud.com
-- Port: 23563
-- User: carhubuser
-- Password: AVNS_LrzqoWReIY1UfSOroMi
-- Database: carhub
+Database Connection: has been hosted online for 24/7 
 
 The set up database is not required, only applied when you want to review the changes in carhub database.
 
