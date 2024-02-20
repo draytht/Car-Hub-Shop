@@ -1,116 +1,83 @@
-# Car-Hub-Shop
-CAR-HUB Application
-
+# CarHub Application
 Welcome to CarHub. It can be daunting when trying to sell a vehicle, especially if one does not want to trade it in or sell it to a used car lot for less than its real value.
 Searching for a vehicle, driving from used car lot to used car lot, and dealing with all sorts of salespeople can be equally taxing.
+
 CarHub attempts to solve this problem with an easy-to-use application in which sellers can list their vehicles and buyers can browse those listings.
 The listings include relevant information about the vehicle and the seller's contact information, so they can then get in contact with each other directly,
 and the sale of the vehicle can be conducted on their own terms.
 Sellers can get their vehicles in front of potential buyers, and buyers can avoid the used car lot grind.
 
+Created using Java, JavaFX/FXML/CSS, and MySQL.
 
-Code Structure
-The code is structured in a modular manner, ensuring a separation of concerns:
+## Requirements
+- Gradle
+- MySQL Server/Workbench
 
-1. Controller classes
-    - AddListingController.java: implement the function for AddListing.fxml
-    - HomePageController.java:  implement the function for HelloApplication.fxml
-    - LoginController.java: implement the function for Login.fxml
-    - RemoveListingController.java: implement the function for RemoveListing.fxml
-    - UserPageController.java: implement the function for UserPage.fxml
-    - VehicleController.java: implement the function for Vehicle.fxml
-    - VehicleProfileController.java: implement the function for VehicleProfile.fxml
-2. Main classes
-    - Dialog_Box.java:
-    - HelloApplication.java: Running the main application
-    - Listing.java: populate the listings from users and cars
-    - ListingData.java: created a array listing to populate the data
-    - ListingDatabase.java: listing functions that connect with carhub database
-    - Navigation.java: a navigation class to open scene
-    - SelectedListing.java: a class that get selected listings
-    - User.java: a singleton instance for user class
-    - UserDate.java: provides a simple and straightforward way to manage user data and login status, single-user applications
-    - UserSession.java: implement the status of the new/current user
-3. Interface class
-    - Dialog_Interface.java: implement the notification message box after Clicked Action.
-4. Abstract class
-    - Car.java: a abstract class that implement for VehicleProfileController.java
-5. FXML files
-    - AddListing.fxml: receive the implementation from AddListingController.java
-    - HomePage.fxml: receive the implementation from HomePageController.java
-    - Login.fxml: receive the implementation from LoginController.java
-    - RemoveListing.fxml: receive the implementation from RemoveListingController.java
-    - UserPage.fxml: receive the implementation from UserPageController.java
-    - Vehicle.fxml: receive the implementation from VehicleController.java
-    - VehicleProfile.fxml: receive the implementation from VehicleProfileController.java
+## Code Structure
+The application is structured in a modular manner, ensuring a separation of concerns:
 
+### Main classes
+- [HelloApplication.java](src/main/java/carshop/carshop/HelloApplication.java): Application launcher class.
+- [Navigation.java](src/main/java/carshop/carshop/Navigation.java): Navigation class to open new pages.
+- [Car.java](src/main/java/carshop/carshop/Car.java): Abstract class representing cars.
+- [Listing.java](src/main/java/carshop/carshop/Listing.java): Class representing a listing's contents.
+- [ListingData.java](src/main/java/carshop/carshop/ListingData.java): List of listings used to populate pages.
+- [ListingDatabase.java](src/main/java/carshop/carshop/ListingDatabase.java): Class that retrieves listing information from the database.
+- [SelectedListing.java](src/main/java/carshop/carshop/SelectedListing.java): Class that retrieves information from a selected listing.
+- [User.java](src/main/java/carshop/carshop/User.java): Class that represents a user's information.
+- [UserData.java](src/main/java/carshop/carshop/UserData.java): Class representing a list of users.
+- [UserSession.java](src/main/java/carshop/carshop/UserSession.java): Singleton class to track the currently logged in user.
+- [UserDatabase.java](src/main/java/carshop/carshop/UserDatabase.java): Class that retrieves user information from the database.
+- [Dialog_Box.java](src/main/java/carshop/carshop/Dialog_Box.java): Class for raising alerts and notifications.
+- [Dialog_Interface.java](src/main/java/carshop/carshop/Dialog_Interface.java): Interface to implement Dialog_Box.java
+- [DatabaseCredentials.java](src/main/java/carshop/carshop/DatabaseCredentials.java): Interface containing database access information.
+ 
+### FXML Pages/Controller Classes
+- [Login.fxml](src/main/resources/carshop/carshop/Login.fxml): Login page that opens on startup. Allows users to register an account, or log into the application if they already have an account. Controlled by [LoginController.java](src/main/java/carshop/carshop/LoginController.java).
+- [HomePage.fxml](src/main/resources/carshop/carshop/HomePage.fxml): Primary page of the application where users can view/filter listings. Controlled by [HomePageController.java](src/main/java/carshop/carshop/HomePageController.java).
+- [UserPage.fxml](src/main/resources/carshop/carshop/UserPage.fxml): Page that allows users to upload a profile picture and/or update profile information. Controlled by [UserPageController.java](src/main/java/carshop/carshop/UserPageController.java).
+- [AddListing.fxml](src/main/resources/carshop/carshop/AddListing.fxml): Page for users to create a new listing by selecting card parameters and uploading an image. Controlled by [AddListingController.java](src/main/java/carshop/carshop/AddListingController.java).
+- [RemoveListing.fxml](src/main/resources/carshop/carshop/RemoveListing.fxml): Page for users to view/remove their own active listings. Controlled by [RemoveListingController.java](src/main/java/carshop/carshop/RemoveListingController.java).
+- [Vehicle.fxml](src/main/resources/carshop/carshop/Vehicle.fxml): "Thumbnail" for listings that displays the car make, model, drive train, and image. Controlled by [VehicleController.java](src/main/java/carshop/carshop/VehicleController.java).
+- [VehicleProfile.fxml](src/main/resources/carshop/carshop/VehicleProfile.fxml): Full page that displays listing information, including the car make, model, year, mileage, interior/exterior color, drive train, contact information, and image. Controlled by [VehicleProfileController.java](src/main/java/carshop/carshop/VehicleProfileController.java).
 
-Functional requirements. Each functional requirement item should describe both the functional requirement and how your application will meet that requirement.
+## Database Setup
+1. Using MySQL Workbench, connect to the host where you would like to host the database for the application. Make note of the host name, login username, and password, as that information will be used to run the application .
+2. Open [CarHub_DB_Schema.sql](CarHub_DB_Schema.sql) in MySQL Workbench, and run the script.
+3. Open [DatabaseCredentials.java](src/main/java/carshop/carshop/DatabaseCredentials.java) in your text editor of choice.
+4. Set the `JDBC_URL`, `USER`, and `PASSWORD` variables to the host name, username, and password recorded in the previous step.
 
-- Users can sign up on Car-Hub.
-- Users can log in/logout on Car-Hub.
-- Users can edit their user information
-- Users can create listings with information about their cars.
-- Users can modify/delete their own listings
-- Users can view listing/contact information.
+## Running the Application
+1. In the [main project directory](/), compile the application. The command format is:
+    ```
+    ./gradlew build
+    ```
+2. Run the application. The command format is:
+    ```
+    ./gradlew run
+    ```
 
-Non-functional requirements. Each requirement item will describe both the requirement and how your application will meet that requirement.
-
-1. Data Persistence.
-This is achieved by storing all the data in CarHub in a database the application interacts with.
-
-2. Simplicity.
-This is achieved by designing the user interface in a simple manner. There is not too much going on on each screen, and the purpose of each button is clear to the user.
-
-3. Maintainability
-The modular design of the application makes maintenance easier. One can make changes in the classes instead of having to deal with the UI interacting directly with the database.
-
-4. Availability.
-The application, if it were released in the real world, would be accessible to users 24/7.
-
-
-
-Code Implementation Requirements
-The code meets the "Code Implementation" requirements in the following manner:
-
-UI Layout and Design: The layout and design are defined in
-AddListing.fxml, HomePage.fxml, Login.fxml, RemoveListing.fxml, UserPage.fxml, Vehicle.fxml, VehicleProfile.fxml, and styled using style.css.
-This allows for a clear separation between UI structure and appearance.
-
-User Registration and Login: The UserPageController.java and LoginController.java class handles user registration and login functionalities. It connects to a MySQL database for user data storage which hosted online.
-
-Database Connection: has been hosted online for 24/7 
-
-The set up database is not required, only applied when you want to review the changes in carhub database.
-
-
-Running the Application
-To run the CAR-HUB application, follow these steps:
-
-1. Ensure you have Java and JavaFX installed on your system. (Using SDK 19 or 21)
-
-2. Database has been stored online, so there will no set up the database.
-
-3. Build the project
-
-4. Run the HelloApplication.java to start the Application.
-    - Step 1: Sign Up
-        Fill in the appropriate Name, Email, Phone number, Password
-    - Step 2: Login
-        Fill in the appropriate Email and Password
-    - Step 3: Update user Information if needed
-        Update User Information via Name, Email, Phone number, Password
-    - Step 4: Add your listing
-        Add Listing follows Make, Model, Year, Price, Drive Terrain, Exterior Color, Interior Color
-    - Step 5: You can view your listings
-        View your Listing in ViewListing.fxml
-    - Step 6: You can check your listing in marketplace
-        View your created listing in HomePage.fxml
-    - Step 7: You can review your vehicle that has been posted in marketplace
-        View your created listing in HomePage.fxml
-    - Step 8: You can delete a listing when its profile
-        Delete your listing in VehicleProfile.fxml
-    - Step 9: You can filter listing by price, mileage, and year production
-        Fill in text for price, milage, and year for searching listing
-    - Step 10: After you are done, you can logout
-        Logout button has been functioned every page in the UI
+## Navigating CarHub
+### Sign In
+- If you have a registered account, enter your login information on the left and click `Sign In`.
+- Otherwise, if you do not have a registered account, enter your personal details on the right and click `Sign Up`.
+- In either case, you will be logged in and taken to the [Main Page](###main-menu).
+### Main Page
+- On this page, you can view and filter car listings by `Price`, `Year` and `Mileage`.
+- Clicking a listing thumbnail opens a new [Page](###Listing-Page) for that listing.
+- If you are logged in, you can also click your name in the top right corner to navigate to your [User Profile](###User-Profile).
+### User Profile
+- On this page, you can update your name, email address, phone number, password, and profile photo.
+- Clicking `Add Listing` on the left will take you to the [Add Listing](###Add-Listing) page.
+- Clicking `View/Remove Listing` on the left will take you to [Your Listings](###Your-Listings).
+- You can also click `Sign Out` in the bottom left to log out.
+### Add Listing
+- On this page, you can select your vehicle's `Make`, `Model`, `Year`, `Price`, `Drive Train`, and `Interior`/`Exterior Color`.
+- You can also upload a photo of your vehicle for the listing.
+### Your Listings
+- On this page, you can view the thumbnails for all of your active listings.
+- Clicking a listing thumbnail opens a new [Page](###Listing-Page) for that listing.
+### Listing Page
+- On this page, you can see a picture of the vehicle in the listing, as well as the vehicle's `Make`, `Model`, `Year`, `Price`, `Drive Train`, and `Interior`/`Exterior color`.
+- On the right, you can see the `Contact Information` of the seller.
+- If you are the owner of the car in the listing, you will see a button titled `Delete Listing` that will remove your listing from the database.
